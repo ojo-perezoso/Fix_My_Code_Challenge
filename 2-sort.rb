@@ -16,20 +16,19 @@ ARGV.each do |arg|
     is_inserted = false
     i = 0
     l = result.size
+    while !is_inserted && i < l do
 
-    
-
-    while !is_inserted &&  i < l do
-      if result[i] < i_arg
-          i += 1
-      else
-        aux = result[i - 1]
-        result.insert(i - 1, i_arg)
-        result[i] = aux
-        is_inserted = true
-      end
-      result << i_arg if !is_inserted
-      enddd
+        if result[i] < i_arg
+            i += 1
+        else
+            result.insert(i, i_arg)
+            i -= 1
+            if i_arg > result[i]
+                is_inserted = true
+            end
+            break
+        end
+    end
+    result << i_arg if !is_inserted && i >= 0
 end
-
 puts result
